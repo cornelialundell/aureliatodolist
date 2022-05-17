@@ -1,0 +1,33 @@
+<template>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <require from="app.css"></require>
+  <div class="container">
+    <h1>${heading}</h1>
+    <form submit.trigger="addTodo()">
+      <input type="text" value.bind="todoDescription" />
+      <button disabled.bind="!todoDescription" class="add">Add todo</button>
+    </form>
+
+    <ul>
+      <li repeat.for="todo of todos" class="todos" id="todo${$index}">
+        <span class="${ todo.done ? 'green' : 'red'}">
+          ${todo.description}
+        </span>
+        <div>
+          <button class="remove" click.trigger="removeTodo(todo)">
+            <i class="fa-solid fa-circle-minus"></i>
+          </button>
+          <button click.trigger="checkTodo(todo)" class="check ${ todo.done ? 'checked' : ''}">
+            <i class="fa-solid fa-circle-check"></i>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
